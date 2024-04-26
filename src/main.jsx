@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AuthProvider from "./providers/AuthProvider";
+import AddTouristSpot from "./pages/AddTouristSpot/AddTouristSpot";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/addTouristSpot",
+        element: <AddTouristSpot></AddTouristSpot>,
       },
     ],
   },
