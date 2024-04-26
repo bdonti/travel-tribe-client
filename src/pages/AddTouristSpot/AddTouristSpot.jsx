@@ -1,11 +1,56 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const AddTouristSpot = () => {
   const [selectedSeason, setSelectedSeason] = useState("");
   const { user } = useContext(AuthContext);
   const handleAddTouristSpot = (event) => {
     event.preventDefault();
+
+    const form = event.target;
+    const url = form.url.value;
+    const touristsSpotName = form.tourists_spot_name.value;
+    const countryName = form.country_name.value;
+    const location = form.location.value;
+    const description = form.description.value;
+    const averageCost = form.avg_cost.value;
+    const season = form.season.value;
+    const travelTime = form.travel_time.value;
+    const totalVisitors = form.total_visitors.value;
+    const name = form.name.value;
+    const email = form.email.value;
+
+    const newTouristSpot = {
+      url,
+      touristsSpotName,
+      countryName,
+      location,
+      description,
+      averageCost,
+      season,
+      travelTime,
+      totalVisitors,
+      name,
+      email,
+    };
+    console.log(newTouristSpot);
+
+    fetch("http://localhost:5000/spots", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newTouristSpot),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Tourist Spot Added Successfully");
+          form.reset();
+        }
+      });
   };
   return (
     <div className="hero">
@@ -20,7 +65,7 @@ const AddTouristSpot = () => {
                 type="text"
                 placeholder="Image URL"
                 className="input input-bordered"
-                name="name"
+                name="url"
                 required
               />
             </div>
@@ -133,7 +178,7 @@ const AddTouristSpot = () => {
                 <span className="label-text">User Email</span>
               </label>
               <input
-                type="text"
+                type="email"
                 placeholder="User Email"
                 className="input input-bordered"
                 name="email"
