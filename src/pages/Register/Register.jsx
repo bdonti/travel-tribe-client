@@ -44,6 +44,7 @@ const Register = () => {
           .then(() => {
             toast.success("Created User Successfully");
             console.log("User created successfully:", user);
+            setRegisterErrorMessage("");
             form.reset();
           })
           .catch((error) => {

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 
@@ -15,6 +16,11 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const signUser = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   useEffect(() => {
@@ -32,6 +38,7 @@ const AuthProvider = ({ children }) => {
     user,
     loading,
     createUser,
+    signUser,
   };
 
   return (
