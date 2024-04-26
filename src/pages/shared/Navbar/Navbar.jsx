@@ -1,6 +1,18 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut, loading } = useContext(AuthContext);
+  const handleMouseEnter = (event) => {
+    if (user) {
+      event.target.title = user.displayName;
+    }
+  };
+
+  const handleMouseLeave = (event) => {
+    event.target.title = "";
+  };
   const items = (
     <div className="space-x-2 flex flex-col md:flex-row">
       <li>
@@ -51,9 +63,36 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{items}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={"/login"} className="btn">
-          Login
-        </Link>
+        {loading ? (
+          <span className="loading loading-ring loading-lg font-bold"></span>
+        ) : user ? (
+          <>
+            <div className="flex flex-row gap-6">
+              <div>
+                <img
+                  src={user.photoURL}
+                  className="rounded-full w-10 h-10 object-cover mt-2"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                />
+              </div>
+              <div>
+                <Link>
+                  <button
+                    onClick={logOut}
+                    className="rounded-2xl py-3 px-10 font-bold"
+                  >
+                    Sign Out
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <Link to="/login">
+            <button className="rounded-2xl py-3 px-10 font-bold">Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );
