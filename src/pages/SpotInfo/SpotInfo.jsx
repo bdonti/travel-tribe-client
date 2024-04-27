@@ -35,9 +35,9 @@ const SpotInfo = () => {
           <img className="w-full rounded-lg" src={url} alt="" />
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row justify-between">
+      <div className="flex flex-col lg:flex-row justify-between mt-5 gap-6">
         <div className="space-y-4">
-          <h1 className="text-2xl font-bold text-center">{touristsSpotName}</h1>
+          <h1 className="text-3xl font-bold text-center">{touristsSpotName}</h1>
           <p className="w-[305px] mx-auto lg:w-[600px]">{description}</p>
         </div>
         <div className="flex flex-col lg:flex-row justify-between items-center gap-x-10 gap-y-6 text-4xl">
