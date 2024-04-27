@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register";
 import AuthProvider from "./providers/AuthProvider";
 import AddTouristSpot from "./pages/AddTouristSpot/AddTouristSpot";
 import PrivateRoute from "./routes/PrivateRoute";
+import Spots from "./pages/Spots/Spots";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/viewTouristSpot",
+        element: <Spots></Spots>,
+        loader: () => fetch("http://localhost:5000/spots"),
       },
       {
         path: "/addTouristSpot",
