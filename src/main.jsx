@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AuthProvider from "./providers/AuthProvider";
 import AddTouristSpot from "./pages/AddTouristSpot/AddTouristSpot";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addTouristSpot",
-        element: <AddTouristSpot></AddTouristSpot>,
+        element: (
+          <PrivateRoute>
+            <AddTouristSpot></AddTouristSpot>
+          </PrivateRoute>
+        ),
       },
     ],
   },
