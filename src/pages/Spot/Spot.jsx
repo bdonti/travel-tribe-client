@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Spot = ({ spot }) => {
-  const { url, touristsSpotName, averageCost, totalVisitors, season } = spot;
+  const { _id, url, touristsSpotName, averageCost, totalVisitors, season } =
+    spot;
   return (
     <div className="card w-full shadow-xl image-full">
       <figure>
@@ -9,16 +11,18 @@ const Spot = ({ spot }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title text-4xl">{touristsSpotName}</h2>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center items-center mx-auto">
           <p className="font-bold text-2xl inline">Average Cost </p>
-          <span>{averageCost}</span> <br />
+          <span className="font-semibold">{averageCost} £</span> <br />
           <p className="font-bold text-2xl inline">Total Visitor per year </p>
-          <span>{totalVisitors}</span> <br />
+          <span className="font-semibold">{totalVisitors}</span> <br />
           <p className="font-bold text-2xl inline">Seasonality </p>
-          <span>{season}</span>
+          <span className="mb-2 font-semibold">{season}</span>
         </div>
         <div className="card-actions justify-center">
-          <button className="btn btn-primary">View Details</button>
+          <Link to={`/touristSpot/${_id}`}>
+            <button className="btn btn-primary">View Details</button>
+          </Link>
         </div>
       </div>
     </div>
