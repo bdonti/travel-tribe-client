@@ -13,6 +13,7 @@ import Spots from "./pages/Spots/Spots";
 import SpotInfo from "./pages/SpotInfo/SpotInfo";
 import MyList from "./pages/MyList/MyList";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import SpotsByCountry from "./pages/SpotsByCountry/SpotsByCountry";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,12 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/spots/${params.id}`),
+      },
+      {
+        path: "/spotsByCountry/:countryName",
+        element: <SpotsByCountry></SpotsByCountry>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/spots-by-country/${params.countryName}`),
       },
     ],
   },

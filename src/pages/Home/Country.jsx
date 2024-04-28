@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Country = ({ country }) => {
   return (
-    <Link to={`/home`}>
+    <Link to={`/spotsByCountry/${country.countryName}`}>
       <div className="card w-full h-72 shadow-xl image-full">
         <figure>
           <img src={country.image} alt="Country" />
