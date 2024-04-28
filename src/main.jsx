@@ -12,11 +12,13 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Spots from "./pages/Spots/Spots";
 import SpotInfo from "./pages/SpotInfo/SpotInfo";
 import MyList from "./pages/MyList/MyList";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
