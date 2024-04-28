@@ -3,7 +3,7 @@ const Footer = () => {
     <footer className="footer footer-center  p-10 text-primary-content mt-10">
       <aside>
         <p className="font-bold text-[#1F2744] w-[200px] lg:w-[500px] mx-auto">
-          Regal Estate Solution <br />
+          Travel Tribe <br />
           Explore a world of endless possibilities with Travel Tribe, your
           premier destination for unforgettable journeys. With an extensive
           selection of handpicked destinations, tailored experiences, and
