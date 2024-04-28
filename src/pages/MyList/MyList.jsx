@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -39,6 +39,16 @@ const MyList = () => {
       totalVisitors,
     };
 
+    const isModified = Object.keys(updateTouristSpot).every(
+      (key) =>
+        updateTouristSpot[key] ===
+        spots.find((spot) => spot._id === spotId)[key]
+    );
+    if (isModified) {
+      toast.error("Please Update Something");
+      return;
+    }
+
     fetch(`http://localhost:5000/spots/${spotId}`, {
       method: "PUT",
       headers: {
@@ -67,6 +77,12 @@ const MyList = () => {
       setSpots(filteredSpots);
     }
   }
+
+  useEffect(() => {
+    if (spots.length > 0) {
+      setSelectedSeason(spots[0].season);
+    }
+  }, [spots]);
 
   return (
     <div className="flex justify-center items-center mt-10">
