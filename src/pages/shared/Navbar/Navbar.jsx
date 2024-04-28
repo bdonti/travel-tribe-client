@@ -89,9 +89,18 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <Link to="/login">
-            <button className="rounded-2xl py-3 px-10 font-bold">Login</button>
-          </Link>
+          <>
+            <Link to="/login">
+              <button className="rounded-2xl py-3 px-10 font-bold">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="rounded-2xl py-3 px-10 font-bold">
+                Register
+              </button>
+            </Link>
+          </>
         )}
       </div>
     </div>
