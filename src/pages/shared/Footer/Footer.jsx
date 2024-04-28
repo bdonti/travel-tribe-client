@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="footer footer-center  p-10 text-primary-content mt-10">
+    <footer className="footer footer-center  p-10  mt-10">
       <aside>
-        <p className="font-bold text-[#1F2744] w-[200px] lg:w-[500px] mx-auto">
+        <p className="font-bold w-[200px] lg:w-[500px] mx-auto">
           Travel Tribe <br />
           Explore a world of endless possibilities with Travel Tribe, your
           premier destination for unforgettable journeys. With an extensive
@@ -10,9 +10,7 @@ const Footer = () => {
           exclusive deals, we are dedicated to making your travel dreams a
           reality.
         </p>
-        <p className="text-[#1F2744] font-medium">
-          Copyright © 2024 - All right reserved
-        </p>
+        <p className="font-medium">Copyright © 2024 - All right reserved</p>
       </aside>
       <nav>
         <div className="grid grid-flow-col gap-4 text-blue-400 font-bold">
