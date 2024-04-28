@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Login = () => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
-  const { signUser } = useContext(AuthContext);
+  const { signUser, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const handleLogin = (event) => {
@@ -17,6 +19,34 @@ const Login = () => {
     signUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
+        navigate(location.state ? location.state : "/");
+        toast.success("Logged in Successfully");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setLoginErrorMessage(errorMessage);
+      });
+  };
+
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(location.state ? location.state : "/");
+        toast.success("Logged in Successfully");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setLoginErrorMessage(errorMessage);
+      });
+  };
+
+  const handleSignInWithGithub = () => {
+    signInWithGithub()
+      .then((result) => {
+        const user = result.user;
         console.log(user);
         navigate(location.state ? location.state : "/");
         toast.success("Logged in Successfully");
@@ -71,7 +101,29 @@ const Login = () => {
               <p className="font-bold text-red-500 text-center my-2">
                 {loginErrorMessage}
               </p>
+              <div>
+                <svg className="w-full bg-slate-600" height="1">
+                  <line
+                    x1="10"
+                    y1="10"
+                    x2="90"
+                    y2="90"
+                    style={{ stroke: "black", strokeWidth: 2 }}
+                  />
+                </svg>
+              </div>
             </form>
+            <div className="flex flex-col justify-center items-center mb-5 font-bold">
+              <p>Social Links</p>
+              <div className="space-x-5 mt-5">
+                <button onClick={handleSignInWithGoogle} className="text-xl">
+                  <FaGoogle className="inline" />
+                </button>
+                <button onClick={handleSignInWithGithub} className="text-xl">
+                  <FaGithub className="inline" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
