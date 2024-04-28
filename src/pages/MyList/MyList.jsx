@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyList = () => {
   const { user } = useContext(AuthContext);
@@ -68,15 +69,48 @@ const MyList = () => {
         }
       });
   };
-
-  if (loadedSpots && loadedSpots.length > 0 && user) {
-    const filteredSpots = loadedSpots.filter(
-      (spot) => spot.email === user.email
-    );
-    if (filteredSpots.length !== spots.length) {
-      setSpots(filteredSpots);
+  const handleDelete = (spotId) => {
+    console.log(spotId);
+    Swal.fire({
+      title: `Are you sure you want to delete`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/spots/${spotId}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Tourist Spot Data has been deleted.",
+                icon: "success",
+              });
+            }
+            const remaining = spots.filter((spot) => spot._id !== spotId);
+            console.log("Remaining spots:", remaining);
+            setSpots(remaining);
+          });
+        console.log("Delete Confirmed");
+      }
+    });
+  };
+  useEffect(() => {
+    if (loadedSpots && loadedSpots.length > 0 && user) {
+      const filteredSpots = loadedSpots.filter(
+        (spot) => spot.email === user.email
+      );
+      if (filteredSpots.length !== spots.length) {
+        setSpots(filteredSpots);
+      }
     }
-  }
+  }, [loadedSpots, user]);
 
   useEffect(() => {
     if (spots.length > 0) {
@@ -280,7 +314,12 @@ const MyList = () => {
                   </dialog>
                 </th>
                 <th>
-                  <button className="btn btn-warning btn-xs">Delete</button>
+                  <button
+                    onClick={() => handleDelete(spot._id)}
+                    className="btn btn-warning btn-xs"
+                  >
+                    Delete
+                  </button>
                 </th>
               </tr>
             ))}
