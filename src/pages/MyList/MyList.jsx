@@ -1,17 +1,72 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const MyList = () => {
   const { user } = useContext(AuthContext);
   const loadedSpots = useLoaderData();
-  const spots = loadedSpots.filter((spots) => spots.email === user.email);
+  // const spots = loadedSpots.filter((spots) => spots.email === user.email);
   const [selectedSeason, setSelectedSeason] = useState("");
+  const [spots, setSpots] = useState([]);
 
   const handleUpdateClick = (spotId) => {
     document.getElementById(`update_modal_${spotId}`).showModal();
   };
-  const handleUpdateTouristSpot = () => {};
+  const handleUpdateTouristSpot = (event, spotId) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const url = form.url.value;
+    const touristsSpotName = form.tourists_spot_name.value;
+    const countryName = form.country_name.value;
+    const location = form.location.value;
+    const description = form.description.value;
+    const averageCost = form.avg_cost.value;
+    const season = form.season.value;
+    const travelTime = form.travel_time.value;
+    const totalVisitors = form.total_visitors.value;
+
+    const updateTouristSpot = {
+      url,
+      touristsSpotName,
+      countryName,
+      location,
+      description,
+      averageCost,
+      season,
+      travelTime,
+      totalVisitors,
+    };
+
+    fetch(`http://localhost:5000/spots/${spotId}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateTouristSpot),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const updatedSpots = spots.map((spot) =>
+            spot._id === spotId ? { ...spot, ...updateTouristSpot } : spot
+          );
+          setSpots(updatedSpots);
+          toast.success("Tourist Spot Updated Successfully");
+        }
+      });
+  };
+
+  if (loadedSpots && loadedSpots.length > 0 && user) {
+    const filteredSpots = loadedSpots.filter(
+      (spot) => spot.email === user.email
+    );
+    if (filteredSpots.length !== spots.length) {
+      setSpots(filteredSpots);
+    }
+  }
 
   return (
     <div className="flex justify-center items-center mt-10">
@@ -76,7 +131,7 @@ const MyList = () => {
                         </form>
                       </div>
                       <form
-                        onSubmit={handleUpdateTouristSpot}
+                        onSubmit={(e) => handleUpdateTouristSpot(e, spot._id)}
                         className="card-body"
                       >
                         <div className="form-control">
@@ -166,7 +221,7 @@ const MyList = () => {
                             onChange={(e) => setSelectedSeason(e.target.value)}
                           >
                             <option disabled value="">
-                              Pick Season
+                              {spot.season}
                             </option>
                             <option value="Winter">Winter</option>
                             <option value="Spring">Spring</option>
