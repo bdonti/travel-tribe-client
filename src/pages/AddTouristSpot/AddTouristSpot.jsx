@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import addSpotPic from "../../assets/touristSpot.json";
+import Lottie from "lottie-react";
 
 const AddTouristSpot = () => {
   const [selectedSeason, setSelectedSeason] = useState("");
@@ -54,170 +56,187 @@ const AddTouristSpot = () => {
       });
   };
   return (
-    <div className="hero">
-      <div className="hero-content w-full">
-        <div className="card w-full max-w-sm shadow-2xl">
-          <form onSubmit={handleAddTouristSpot} className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Image URL</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Image URL"
-                className="input input-bordered"
-                name="url"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Tourists Spot Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Tourists Spot Name"
-                className="input input-bordered"
-                name="tourists_spot_name"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Country Name</span>
-              </label>
-              <select
-                className="select select-bordered w-full max-w-xs"
-                name="country_name"
-                required
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
-              >
-                <option disabled value="">
-                  Pick Country
-                </option>
-                <option value="Italy">Italy</option>
-                <option value="Spain">Spain</option>
-                <option value="Greece">Greece</option>
-                <option value="Czech Republic">Czech Republic</option>
-                <option value="France">France</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Germany">Germany</option>
-                <option value="Netherlands">Netherlands</option>
-              </select>
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Location</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Location"
-                className="input input-bordered"
-                name="location"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Short Description</span>
-              </label>
-              <textarea
-                type="text"
-                placeholder="Description"
-                className="textarea textarea-bordered textarea-md w-full max-w-xs"
-                name="description"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Average Cost</span>
-              </label>
-              <input
-                type="number"
-                placeholder="Average Cost"
-                className="input input-bordered"
-                name="avg_cost"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Seasonality</span>
-              </label>
-              <select
-                className="select select-bordered w-full max-w-xs"
-                name="season"
-                required
-                value={selectedSeason}
-                onChange={(e) => setSelectedSeason(e.target.value)}
-              >
-                <option disabled value="">
-                  Pick Season
-                </option>
-                <option value="Winter">Winter</option>
-                <option value="Spring">Spring</option>
-                <option value="Summer">Summer</option>
-                <option value="Autumn">Autumn</option>
-              </select>
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Travel Time</span>
-              </label>
-              <input
-                type="number"
-                placeholder="Travel Time (in days)"
-                className="input input-bordered"
-                name="travel_time"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Total Visitors Per Year</span>
-              </label>
-              <input
-                type="number"
-                placeholder="Total Visitors"
-                className="input input-bordered"
-                name="total_visitors"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">User Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="User Email"
-                className="input input-bordered"
-                name="email"
-                defaultValue={user?.email}
-                disabled
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">User Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="User Name"
-                className="input input-bordered"
-                name="name"
-                defaultValue={user?.displayName}
-                disabled
-                required
-              />
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Add Tourist Spot</button>
-            </div>
-          </form>
+    <div className="flex flex-col lg:flex-row justify-around items-center">
+      <div>
+        <Lottie
+          className="w-full lg:h-[800px]"
+          animationData={addSpotPic}
+          loop={true}
+        />
+      </div>
+      <div className="hero">
+        <div className="hero-content w-full">
+          <div className="card w-full max-w-sm shadow-2xl">
+            <form onSubmit={handleAddTouristSpot} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Image URL</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Image URL"
+                  className="input input-bordered"
+                  name="url"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Tourists Spot Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Tourists Spot Name"
+                  className="input input-bordered"
+                  name="tourists_spot_name"
+                  required
+                />
+              </div>
+              <div className="flex justify-between gap-6">
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Country Name</span>
+                  </label>
+                  <select
+                    className="select select-bordered w-full max-w-xs"
+                    name="country_name"
+                    required
+                    value={selectedCountry}
+                    onChange={(e) => setSelectedCountry(e.target.value)}
+                  >
+                    <option disabled value="">
+                      Pick Country
+                    </option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="France">France</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Netherlands">Netherlands</option>
+                  </select>
+                </div>
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Location</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    className="input input-bordered"
+                    name="location"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Short Description</span>
+                </label>
+                <textarea
+                  type="text"
+                  placeholder="Description"
+                  className="textarea textarea-bordered textarea-md w-full max-w-xs"
+                  name="description"
+                  required
+                />
+              </div>
+              <div className="flex justify-between gap-6">
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Average Cost</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Average Cost"
+                    className="input input-bordered"
+                    name="avg_cost"
+                    required
+                  />
+                </div>
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Seasonality</span>
+                  </label>
+                  <select
+                    className="select select-bordered w-full max-w-xs"
+                    name="season"
+                    required
+                    value={selectedSeason}
+                    onChange={(e) => setSelectedSeason(e.target.value)}
+                  >
+                    <option disabled value="">
+                      Pick Season
+                    </option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Autumn">Autumn</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex justify-between gap-6">
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Travel Time</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Travel Time (in days)"
+                    className="input input-bordered"
+                    name="travel_time"
+                    required
+                  />
+                </div>
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Total Visitors Per Year</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Total Visitors"
+                    className="input input-bordered"
+                    name="total_visitors"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between gap-6">
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">User Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="User Email"
+                    className="input input-bordered"
+                    name="email"
+                    defaultValue={user?.email}
+                    disabled
+                    required
+                  />
+                </div>
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">User Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="User Name"
+                    className="input input-bordered"
+                    name="name"
+                    defaultValue={user?.displayName}
+                    disabled
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary">Add Tourist Spot</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
