@@ -8,7 +8,8 @@ const MyList = () => {
   const { user } = useContext(AuthContext);
   const loadedSpots = useLoaderData();
   // const spots = loadedSpots.filter((spots) => spots.email === user.email);
-  const [selectedSeason, setSelectedSeason] = useState("");
+  // const [selectedSeason, setSelectedSeason] = useState("");
+  // const [selectedCountry, setSelectedCountry] = useState("");
   const [spots, setSpots] = useState([]);
 
   const handleUpdateClick = (spotId) => {
@@ -112,11 +113,20 @@ const MyList = () => {
     }
   }, [loadedSpots, user]);
 
-  useEffect(() => {
-    if (spots.length > 0) {
-      setSelectedSeason(spots[0].season);
-    }
-  }, [spots]);
+  // useEffect(() => {
+  //   if (spots.length > 0) {
+  //     setSelectedSeason(spots[0].season);
+  //     setSelectedCountry(spots[0].countryName);
+  //   }
+  // }, [spots]);
+
+  // const handleSeasonChange = (e) => {
+  //   setSelectedSeason(e.target.value);
+  // };
+
+  // const handleCountryChange = (e) => {
+  //   setSelectedCountry(e.target.value);
+  // };
 
   return (
     <div className="flex justify-center items-center mt-10">
@@ -214,13 +224,29 @@ const MyList = () => {
                           <label className="label">
                             <span className="label-text">Country Name</span>
                           </label>
-                          <input
-                            type="text"
-                            placeholder="Country Name"
-                            className="input input-bordered"
+                          <select
+                            className="select select-bordered w-full max-w-xs"
                             name="country_name"
-                            defaultValue={spot.countryName}
-                          />
+                          >
+                            <option
+                              disabled={!spot.countryName}
+                              value={spot.countryName}
+                            >
+                              {spot.countryName}
+                            </option>
+                            <option value="Italy">Italy</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Greece">Greece</option>
+                            <option value="Czech Republic">
+                              Czech Republic
+                            </option>
+                            <option value="France">France</option>
+                            <option value="United Kingdom">
+                              United Kingdom
+                            </option>
+                            <option value="Germany">Germany</option>
+                            <option value="Netherlands">Netherlands</option>
+                          </select>
                         </div>
                         <div className="form-control">
                           <label className="label">
@@ -267,10 +293,8 @@ const MyList = () => {
                           <select
                             className="select select-bordered w-full max-w-xs"
                             name="season"
-                            value={selectedSeason}
-                            onChange={(e) => setSelectedSeason(e.target.value)}
                           >
-                            <option disabled value="">
+                            <option disabled={!spot.season} value={spot.season}>
                               {spot.season}
                             </option>
                             <option value="Winter">Winter</option>

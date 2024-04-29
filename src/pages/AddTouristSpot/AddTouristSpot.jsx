@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 const AddTouristSpot = () => {
   const [selectedSeason, setSelectedSeason] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const { user } = useContext(AuthContext);
   const handleAddTouristSpot = (event) => {
     event.preventDefault();
@@ -85,13 +86,25 @@ const AddTouristSpot = () => {
               <label className="label">
                 <span className="label-text">Country Name</span>
               </label>
-              <input
-                type="text"
-                placeholder="Country Name"
-                className="input input-bordered"
+              <select
+                className="select select-bordered w-full max-w-xs"
                 name="country_name"
                 required
-              />
+                value={selectedCountry}
+                onChange={(e) => setSelectedCountry(e.target.value)}
+              >
+                <option disabled value="">
+                  Pick Country
+                </option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+                <option value="Greece">Greece</option>
+                <option value="Czech Republic">Czech Republic</option>
+                <option value="France">France</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="Netherlands">Netherlands</option>
+              </select>
             </div>
             <div className="form-control">
               <label className="label">
