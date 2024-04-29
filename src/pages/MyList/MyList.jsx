@@ -7,9 +7,6 @@ import Swal from "sweetalert2";
 const MyList = () => {
   const { user } = useContext(AuthContext);
   const loadedSpots = useLoaderData();
-  // const spots = loadedSpots.filter((spots) => spots.email === user.email);
-  // const [selectedSeason, setSelectedSeason] = useState("");
-  // const [selectedCountry, setSelectedCountry] = useState("");
   const [spots, setSpots] = useState([]);
 
   const handleUpdateClick = (spotId) => {
@@ -112,21 +109,6 @@ const MyList = () => {
       }
     }
   }, [loadedSpots, user]);
-
-  // useEffect(() => {
-  //   if (spots.length > 0) {
-  //     setSelectedSeason(spots[0].season);
-  //     setSelectedCountry(spots[0].countryName);
-  //   }
-  // }, [spots]);
-
-  // const handleSeasonChange = (e) => {
-  //   setSelectedSeason(e.target.value);
-  // };
-
-  // const handleCountryChange = (e) => {
-  //   setSelectedCountry(e.target.value);
-  // };
 
   return (
     <div className="flex justify-center items-center mt-10">
