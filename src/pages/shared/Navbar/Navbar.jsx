@@ -89,7 +89,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="flex justify-center items-center mr-8">
-          <label className="swap swap-rotate hidden md:block lg:flex lg:items center">
+          <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" onClick={handleToggle} />
 
