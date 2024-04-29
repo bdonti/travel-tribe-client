@@ -13,7 +13,7 @@ import banner3 from "../../assets/banner-3.jpg";
 
 const Banner = () => {
   return (
-    <div>
+    <div className="px-4">
       <Swiper
         className="mt-5 rounded-2xl"
         slidesPerView={1}
