@@ -61,7 +61,7 @@ const AddTouristSpot = () => {
         <Lottie
           className="w-full lg:h-[800px]"
           animationData={addSpotPic}
-          loop={true}
+          loop={false}
         />
       </div>
       <div className="hero">
