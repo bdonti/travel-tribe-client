@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import travelIcon from "../../../assets/travel.png";
 
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
@@ -76,7 +77,12 @@ const Navbar = () => {
             {items}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Travel Tribe</a>
+        <a className="btn btn-ghost text-xl">
+          <div className="flex gap-2">
+            <img src={travelIcon} className="w-[32px] h-[32px]" alt="" />
+            <p>Travel Tribe</p>
+          </div>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{items}</ul>

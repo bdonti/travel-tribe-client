@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { Zoom } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 
 const TouristSpot = ({ spot }) => {
