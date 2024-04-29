@@ -77,12 +77,14 @@ const Navbar = () => {
             {items}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
-          <div className="flex gap-2">
-            <img src={travelIcon} className="w-[32px] h-[32px]" alt="" />
-            <p>Travel Tribe</p>
-          </div>
-        </a>
+        <Link to={`/`}>
+          <a className="btn btn-ghost text-xl">
+            <div className="flex gap-2">
+              <img src={travelIcon} className="w-[32px] h-[32px]" alt="" />
+              <p>Travel Tribe</p>
+            </div>
+          </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{items}</ul>
