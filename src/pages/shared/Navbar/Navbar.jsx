@@ -77,7 +77,7 @@ const Navbar = () => {
             {items}
           </ul>
         </div>
-        <Link to={`/`}>
+        <Link className="hidden md:block" to={`/`}>
           <a className="btn btn-ghost text-xl">
             <div className="flex gap-2">
               <img src={travelIcon} className="w-[32px] h-[32px]" alt="" />
@@ -91,7 +91,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="flex justify-center items-center mr-8">
-          <label className="swap swap-rotate">
+          <label className="swap swap-rotate hidden md:block lg:flex lg:items center">
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" onClick={handleToggle} />
 
