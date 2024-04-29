@@ -77,13 +77,11 @@ const Navbar = () => {
             {items}
           </ul>
         </div>
-        <Link className="hidden md:block" to={`/`}>
-          <a className="btn btn-ghost text-xl">
-            <div className="flex gap-2">
-              <img src={travelIcon} className="w-[32px] h-[32px]" alt="" />
-              <p>Travel Tribe</p>
-            </div>
-          </a>
+        <Link to={`/`} className="btn btn-ghost text-xl hidden md:block">
+          <div className="flex gap-2">
+            <img src={travelIcon} className="w-[32px] h-[32px]" alt="" />
+            <p>Travel Tribe</p>
+          </div>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

@@ -36,7 +36,8 @@ const router = createBrowserRouter([
       {
         path: "/viewTouristSpot",
         element: <Spots></Spots>,
-        loader: () => fetch("http://localhost:5000/spots"),
+        loader: () =>
+          fetch("https://tourism-management-server-kappa.vercel.app/spots"),
       },
       {
         path: "/myList",
@@ -45,7 +46,8 @@ const router = createBrowserRouter([
             <MyList></MyList>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/spots"),
+        loader: () =>
+          fetch("https://tourism-management-server-kappa.vercel.app/spots"),
       },
       {
         path: "/addTouristSpot",
@@ -63,13 +65,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/spots/${params.id}`),
+          fetch(
+            `https://tourism-management-server-kappa.vercel.app/spots/${params.id}`
+          ),
       },
       {
         path: "/spotsByCountry/:countryName",
         element: <SpotsByCountry></SpotsByCountry>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/spots-by-country/${params.countryName}`),
+          fetch(
+            `https://tourism-management-server-kappa.vercel.app/spots-by-country/${params.countryName}`
+          ),
       },
     ],
   },

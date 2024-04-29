@@ -48,13 +48,16 @@ const MyList = () => {
       return;
     }
 
-    fetch(`http://localhost:5000/spots/${spotId}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateTouristSpot),
-    })
+    fetch(
+      `https://tourism-management-server-kappa.vercel.app/spots/${spotId}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateTouristSpot),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -79,9 +82,12 @@ const MyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/spots/${spotId}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://tourism-management-server-kappa.vercel.app/spots/${spotId}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

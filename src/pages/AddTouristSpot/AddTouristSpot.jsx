@@ -39,7 +39,7 @@ const AddTouristSpot = () => {
     };
     console.log(newTouristSpot);
 
-    fetch("http://localhost:5000/spots", {
+    fetch("https://tourism-management-server-kappa.vercel.app/spots", {
       method: "POST",
       headers: {
         "content-type": "application/json",

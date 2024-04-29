@@ -4,7 +4,7 @@ import TouristSpot from "./TouristSpot";
 const TouristSpots = () => {
   const [spots, setSpots] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/spots")
+    fetch("https://tourism-management-server-kappa.vercel.app/spots")
       .then((res) => res.json())
       .then((data) => {
         setSpots(data);
