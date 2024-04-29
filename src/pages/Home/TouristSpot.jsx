@@ -10,9 +10,11 @@ const TouristSpot = ({ spot }) => {
       </figure>
       <div className="card-body text-center flex-grow flex flex-col justify-between">
         <div className="space-y-2">
-          <h2 className="font-bold text-3xl">{touristsSpotName}</h2>
-          <h3 className="text-[#8F90A6]">{location}</h3>
-          <h3 className="font-bold text-[#8F90A6]">{averageCost} $</h3>
+          <h2 className="font-bold text-3xl text-[#298E8E]">
+            {touristsSpotName}
+          </h2>
+          <h3 className="text-[#2E5F47]">{location}</h3>
+          <h3 className="font-bold text-[#2E5F47]">{averageCost} $</h3>
         </div>
         <div className="card-actions mt-4 justify-center">
           <Link to={`/touristSpot/${_id}`}>

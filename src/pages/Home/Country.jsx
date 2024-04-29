@@ -9,7 +9,7 @@ const Country = ({ country }) => {
           <img src={country.image} alt="Country" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{country.countryName}</h2>
+          <h2 className="card-title text-white">{country.countryName}</h2>
           <p className="font-bold text-white">{country.description}</p>
         </div>
       </div>

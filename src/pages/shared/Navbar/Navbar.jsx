@@ -33,7 +33,7 @@ const Navbar = () => {
   }, [theme]);
 
   const items = (
-    <div className="space-x-2 flex flex-col md:flex-row">
+    <div className="space-x-2 flex flex-col md:flex-row font-bold">
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
