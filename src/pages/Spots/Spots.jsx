@@ -4,25 +4,40 @@ import { useState } from "react";
 
 const Spots = () => {
   const spots = useLoaderData();
+  const [sortedSpots, setSortedSpots] = useState(spots);
 
-  const [sortByAverageCost, setSortByAverageCost] = useState(false);
-
-  const handleSortByAverageCost = () => {
-    setSortByAverageCost(!sortByAverageCost);
+  const handleAscendingOrder = () => {
+    const sorted = [...sortedSpots].sort(
+      (a, b) => a.averageCost - b.averageCost
+    );
+    setSortedSpots(sorted);
   };
 
-  let sortedSpots = [...spots];
-
-  if (sortByAverageCost) {
-    sortedSpots.sort((a, b) => a.averageCost - b.averageCost);
-  }
+  const handleDescendingOrder = () => {
+    const sorted = [...sortedSpots].sort(
+      (a, b) => b.averageCost - a.averageCost
+    );
+    setSortedSpots(sorted);
+  };
 
   return (
     <div>
       <div className="flex justify-center mb-5">
-        <button className="btn btn-accent" onClick={handleSortByAverageCost}>
-          {sortByAverageCost ? "Show Original Data" : "Sort By Average Cost"}
-        </button>
+        <details className="dropdown">
+          <summary className="m-1 btn">Sort by Average Cost</summary>
+          <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+            <li>
+              <button onClick={handleAscendingOrder} className="btn">
+                Low to High
+              </button>
+            </li>
+            <li>
+              <button onClick={handleDescendingOrder} className="btn">
+                High to Low
+              </button>
+            </li>
+          </ul>
+        </details>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedSpots.map((spot) => (
